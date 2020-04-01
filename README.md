@@ -3,10 +3,10 @@ Environment Configuration Prompter.
 
 This module loads environment config and handles manual config prompting
 
-## install
+### install
 ```npm install env-config-prompt```
 
-## base configuration file
+### base configuration file
 Create a base configuration json object file. This object can contain any depth.
 - non object values will be handled as default values
 - ```null``` values will be handled as a required user input
@@ -29,7 +29,7 @@ Create a base configuration json object file. This object can contain any depth.
  - the author property is an empty non required property
  - the git-repo property is required
 
-## usage
+### usage
 In order to load the configuration file, one might load the module as a method and call for it while in its script as shown here
 
 ```javascript
@@ -40,12 +40,16 @@ let config = config_loader()
 
 ```
 
-### option parameters
+#### option parameters
  - ```force_reset``` force reset the config file (default is ```false```)
  - ```conf_file``` file name for final config file (default is ```'config.json'```)
  - ```base_conf_file``` file name for the base config file (default is ```'base_config.json'```)
  - ```config_title``` first config console title (default is ```'FIRST CONFIGURATION'```)
  - ```use_config_title``` use a first time config title (default is ```true```)
+
+### advices
+
+ - add the ```config.json``` (or whatever custom filename yo want to use for the config) in your .gitignore file
 
 ### LICENSE
 
