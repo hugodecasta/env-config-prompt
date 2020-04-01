@@ -1,0 +1,29 @@
+{
+  "name": "env-config-prompt",
+  "version": "0.1.0",
+  "description": "Environment Configuration Prompter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exi t1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugodecasta/env-config-prompt.git"
+  },
+  "keywords": [
+    "environement",
+    "configuration",
+    "prompter",
+    "properties"
+  ],
+  "author": "Hugo Castaneda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hugodecasta/env-config-prompt/issues"
+  },
+  "homepage": "https://github.com/hugodecasta/env-config-prompt#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10",
+    "yargs-parser": "^18.1.2"
+  }
+}
