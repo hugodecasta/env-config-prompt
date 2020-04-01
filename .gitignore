@@ -1,3 +1,6 @@
+# config
+base_config.json
+
 # Logs
 logs
 *.log
