@@ -52,4 +52,3 @@ function load_config(
 // -------------------------------------------------------------------- EXPORTS
 
 module.exports = load_config
-load_config(true)
