@@ -12,7 +12,7 @@ const rl = require('readline-sync')
 // -- -- type
 // -- -- required
 // -- -- def
-// -- choice
+// -- option
 // -- -- option
 // -- -- reset_after_input
 
@@ -89,19 +89,19 @@ const detail_map = {
     
     'option': function(detail, path) {
 
-        let option = detail.option
+        let options = detail.options
         let reset_after_input = detail.reset_after_input
 
         let input = null
         while (input == null) {
             input = rl.question(create_question_str(detail, path))
-            if (!(input in option)) {
+            if (!(input in options)) {
                 console.log('incorrect value, use a proposed option')
                 input = null
             }
         }
         
-        let value = option[input]
+        let value = options[input]
 
         if(reset_after_input) {
             value = handles_input(value, path)
@@ -152,7 +152,7 @@ function create_detail(config) {
             '@detail': {
                 input_type: 'option',
                 def: String(config),
-                option: {
+                options: {
                     true: true,
                     false: false
                 }
@@ -172,7 +172,7 @@ function create_question_str(detail, path) {
     }
     
     if (detail.input_type == 'option') {
-        def = ' (' + Object.keys(detail.option).join('/') + ')'
+        def = ' (' + Object.keys(detail.options).join('/') + ')'
     }
 
     let str = path.join('.') + def + ': '
@@ -194,7 +194,7 @@ function need_to_skip_next(config, value) {
 
 function handles_input(config, path=[]) {
     config = create_detail(config)
-    let detail =config['@detail']
+    let detail = config['@detail']
     let input_type = detail.input_type
 
     return detail_map[input_type](detail, path)
