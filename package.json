@@ -1,6 +1,6 @@
 {
   "name": "env-config-prompt",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Environment Configuration Prompter",
   "main": "index.js",
   "scripts": {
