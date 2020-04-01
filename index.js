@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------- EXPORTS
 
 const fs = require('fs')
-const rl = require('readline-sync')
+const detail_handler = require('./detail_sys')
 
 // -------------------------------------------------------------------- METHODS
 
@@ -15,42 +15,14 @@ function save(filename, config) {
     return fs.writeFileSync(filename, JSON.stringify(config, null, 4),)
 }
 
-// ------------------- PROMPT
+// ------------------- BASE CONFIG HANDLER
 
-function prompt_config(base_config, path=[]) {
+function handles_input(config, path=[]) {
+    config = create_detail(config)
+    let detail =config['@detail']
+    let input_type = detail.input_type
 
-    if (typeof base_config != 'object' || base_config == null) {
-
-        base_config = base_config == '' ? undefined : base_config
-
-        let base_config_str = base_config == null ? '' : '('+base_config+')'
-        let value = null
-
-        while (value === null) {
-            value = rl.question(path.join('.') + ' ' + base_config_str + ': ')
-            value = value == '' ? base_config : value
-        }
-
-        return value
-    }
-
-    let config = {}
-
-    for (let prop in base_config) {
-
-        path.push(prop)
-
-        let value = prompt_config(base_config[prop], path)
-        if (value != undefined) {
-            config[prop] = value
-        }
-
-        path.pop()
-
-    }
-
-    return config
-
+    return detail_map[input_type](detail, path)
 }
 
 // -------------------------------------------------------------------- CORE
@@ -69,7 +41,7 @@ function load_config(
         }
     
         let base_config = load(base_conf_file)
-        let config = prompt_config(base_config)
+        let config = detail_handler(base_config)
         save(conf_file, config)
     
     }
@@ -80,3 +52,4 @@ function load_config(
 // -------------------------------------------------------------------- EXPORTS
 
 module.exports = load_config
+load_config(true)
